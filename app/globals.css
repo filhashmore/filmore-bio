@@ -1,0 +1,254 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Oswald:wght@200;300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --filmore-cream: #F5F0E8;
+  --filmore-tan: #C4A77D;
+  --filmore-brown: #5C4A3D;
+  --filmore-dark: #2A2118;
+  --filmore-gold: #D4A853;
+  --filmore-rust: #8B4513;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Libre Baskerville', serif;
+  background-color: var(--filmore-dark);
+  color: var(--filmore-cream);
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--filmore-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--filmore-tan);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--filmore-gold);
+}
+
+/* Noise texture overlay */
+.noise-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Text gradient effect */
+.text-gradient {
+  background: linear-gradient(135deg, var(--filmore-gold) 0%, var(--filmore-tan) 50%, var(--filmore-gold) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glowing border effect */
+.glow-border {
+  position: relative;
+}
+
+.glow-border::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(45deg, var(--filmore-gold), transparent, var(--filmore-gold));
+  border-radius: inherit;
+  z-index: -1;
+  animation: rotate 4s linear infinite;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Section reveal animation */
+.reveal-section {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: all 0.8s cubic-bezier(0.17, 0.55, 0.55, 1);
+}
+
+.reveal-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Parallax layers */
+.parallax-slow {
+  transform: translateY(calc(var(--scroll) * 0.2px));
+}
+
+.parallax-fast {
+  transform: translateY(calc(var(--scroll) * -0.1px));
+}
+
+/* Album hover effect */
+.album-card {
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.album-card:hover {
+  transform: translateY(-12px) scale(1.02);
+}
+
+.album-card:hover .album-overlay {
+  opacity: 1;
+}
+
+/* Nav link underline effect */
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--filmore-gold);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Social icon hover */
+.social-icon {
+  transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+  transform: translateY(-4px);
+  color: var(--filmore-gold);
+}
+
+/* Custom cursor for interactive elements */
+.cursor-spotlight {
+  cursor: none;
+}
+
+/* Stats counter animation */
+@keyframes countUp {
+  from { transform: translateY(100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.stat-number {
+  display: inline-block;
+  animation: countUp 0.6s ease-out forwards;
+}
+
+/* Video thumbnail overlay */
+.video-thumb {
+  position: relative;
+  overflow: hidden;
+}
+
+.video-thumb::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(42, 33, 24, 0.8), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.video-thumb:hover::before {
+  opacity: 1;
+}
+
+/* Spotify embed styling */
+.spotify-embed {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Button styles */
+.btn-primary {
+  background: linear-gradient(135deg, var(--filmore-gold) 0%, var(--filmore-tan) 100%);
+  color: var(--filmore-dark);
+  padding: 12px 32px;
+  border-radius: 4px;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(212, 168, 83, 0.4);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--filmore-gold);
+  padding: 12px 32px;
+  border-radius: 4px;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  border: 2px solid var(--filmore-gold);
+  cursor: pointer;
+}
+
+.btn-outline:hover {
+  background: var(--filmore-gold);
+  color: var(--filmore-dark);
+}
+
+/* Divider */
+.divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--filmore-tan), transparent);
+  margin: 4rem 0;
+}
+
+/* Loading animation */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.shimmer {
+  background: linear-gradient(90deg, var(--filmore-dark) 25%, var(--filmore-brown) 50%, var(--filmore-dark) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
