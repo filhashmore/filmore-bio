@@ -55,12 +55,16 @@ const fanFavorites = [
   { title: "Nothing's Better", spotifyUrl: 'https://open.spotify.com/search/filmore%20nothings%20better' },
 ];
 
+// Correct Spotify Artist ID from web search
+const SPOTIFY_ARTIST_ID = '0FvJm0y2eHw0aPkLLU3sIG';
+const SPOTIFY_ARTIST_URL = `https://open.spotify.com/artist/${SPOTIFY_ARTIST_ID}`;
+
 const socialStats = [
-  { platform: 'Instagram', count: '86.7K', icon: Instagram, url: 'https://instagram.com/filmoremusic', color: '#E4405F' },
-  { platform: 'Facebook', count: '41K', icon: Facebook, url: 'https://facebook.com/filmoremusic', color: '#1877F2' },
-  { platform: 'TikTok', count: '54.9K', icon: Music2, url: 'https://tiktok.com/@filmoremusic', color: '#000000' },
-  { platform: 'YouTube', count: '13K', icon: Youtube, url: 'https://youtube.com/@filmoremusic', color: '#FF0000' },
-  { platform: 'Spotify', count: '326,824', icon: Disc3, url: 'https://open.spotify.com/artist/filmore', color: '#1DB954', label: 'Monthly Listeners' },
+  { platform: 'Instagram', count: '86.7K', icon: Instagram, url: 'https://www.instagram.com/filmoremusic/', color: '#E4405F' },
+  { platform: 'Facebook', count: '41K', icon: Facebook, url: 'https://www.facebook.com/filmoremusic', color: '#1877F2' },
+  { platform: 'TikTok', count: '54.9K', icon: Music2, url: 'https://www.tiktok.com/@filmoremusic', color: '#000000' },
+  { platform: 'YouTube', count: '13K', icon: Youtube, url: 'https://www.youtube.com/@filmoremusic', color: '#FF0000' },
+  { platform: 'Spotify', count: '513K+', icon: Disc3, url: SPOTIFY_ARTIST_URL, color: '#1DB954', label: 'Monthly Listeners' },
 ];
 
 const playlistGoals = [
@@ -228,10 +232,10 @@ export default function FilmoreEPK() {
               initial={{ opacity: 0 }}
               animate={isLoaded ? { opacity: 1 } : {}}
               transition={{ duration: 0.8, delay: 1.2 }}
-              className="mt-8 flex items-center justify-center gap-6"
+              className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4"
             >
               <a 
-                href="https://open.spotify.com/artist/filmore" 
+                href={SPOTIFY_ARTIST_URL}
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="btn-primary flex items-center gap-2"
@@ -267,7 +271,10 @@ export default function FilmoreEPK() {
         </div>
 
         {/* Mr. 305 Logo */}
-        <motion.div
+        <motion.a
+          href="https://mr305.com"
+          target="_blank"
+          rel="noopener noreferrer"
           initial={{ opacity: 0 }}
           animate={isLoaded ? { opacity: 1 } : {}}
           transition={{ duration: 0.8, delay: 1.8 }}
@@ -278,7 +285,7 @@ export default function FilmoreEPK() {
             alt="Mr. 305 Records" 
             className="h-10 w-auto opacity-70 hover:opacity-100 transition-opacity"
           />
-        </motion.div>
+        </motion.a>
       </section>
 
       {/* About Section */}
@@ -464,7 +471,7 @@ export default function FilmoreEPK() {
             <iframe 
               className="spotify-embed w-full"
               style={{ borderRadius: '12px' }}
-              src="https://open.spotify.com/embed/artist/3rGlCjPpMa3LOUoZGqPL7R?utm_source=generator&theme=0" 
+              src={`https://open.spotify.com/embed/artist/${SPOTIFY_ARTIST_ID}?utm_source=generator&theme=0`} 
               width="100%" 
               height="352" 
               frameBorder="0" 
@@ -596,7 +603,7 @@ export default function FilmoreEPK() {
             className="text-center mt-12"
           >
             <a 
-              href="https://youtube.com/@filmoremusic"
+              href="https://www.youtube.com/@filmoremusic"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-outline inline-flex items-center gap-2"
@@ -617,7 +624,7 @@ export default function FilmoreEPK() {
 
         <div className="max-w-6xl mx-auto relative z-10">
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            {/* Album Art Placeholder */}
+            {/* Album Art - Using actual Atypical artwork */}
             <motion.div
               initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -625,24 +632,19 @@ export default function FilmoreEPK() {
               transition={{ duration: 0.8 }}
               className="relative"
             >
-              <div className="aspect-square bg-gradient-to-br from-filmore-brown via-filmore-dark to-filmore-brown/50 rounded-sm overflow-hidden relative group">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <motion.div
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                    className="w-3/4 h-3/4 rounded-full border-2 border-filmore-gold/30"
-                  />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="font-accent text-6xl md:text-8xl text-filmore-gold/20">ATYPICAL</span>
-                  </div>
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-filmore-dark via-transparent to-transparent" />
+              <div className="aspect-square rounded-sm overflow-hidden relative group shadow-2xl border border-filmore-tan/20">
+                <img 
+                  src="/images/atypical-album.png" 
+                  alt="ATYPICAL Album Cover"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-filmore-dark/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
               {/* Floating vinyl effect */}
               <motion.div
-                animate={{ y: [0, -10, 0] }}
+                animate={{ y: [0, -10, 0], rotate: [0, 5, 0] }}
                 transition={{ duration: 4, repeat: Infinity }}
-                className="absolute -bottom-6 -right-6 w-32 h-32 rounded-full bg-filmore-dark border-4 border-filmore-gold/30"
+                className="absolute -bottom-6 -right-6 w-32 h-32 rounded-full bg-filmore-dark border-4 border-filmore-gold/30 hidden md:block"
               >
                 <div className="absolute inset-4 rounded-full bg-filmore-gold/10" />
                 <div className="absolute inset-1/2 w-4 h-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-filmore-gold" />
@@ -687,7 +689,7 @@ export default function FilmoreEPK() {
               </div>
 
               <a 
-                href="https://open.spotify.com/artist/filmore"
+                href={SPOTIFY_ARTIST_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-primary inline-flex items-center gap-2"
@@ -729,6 +731,14 @@ export default function FilmoreEPK() {
                     {item.label}
                   </a>
                 ))}
+                <a
+                  href="https://www.filmoremusic.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block text-filmore-cream/60 hover:text-filmore-gold transition-colors text-sm"
+                >
+                  Official Website
+                </a>
               </div>
             </div>
 
@@ -743,16 +753,19 @@ export default function FilmoreEPK() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="social-icon w-10 h-10 rounded-full bg-filmore-tan/20 flex items-center justify-center text-filmore-tan hover:bg-filmore-gold/20"
+                    aria-label={social.platform}
                   >
                     <social.icon className="w-5 h-5" />
                   </a>
                 ))}
               </div>
-              <img 
-                src="/images/mr305-logo.png" 
-                alt="Mr. 305 Records" 
-                className="h-8 w-auto opacity-60"
-              />
+              <a href="https://mr305.com" target="_blank" rel="noopener noreferrer">
+                <img 
+                  src="/images/mr305-logo.png" 
+                  alt="Mr. 305 Records" 
+                  className="h-8 w-auto opacity-60 hover:opacity-100 transition-opacity"
+                />
+              </a>
             </div>
           </div>
 

@@ -3,13 +3,44 @@ import './globals.css'
 
 export const metadata: Metadata = {
   title: 'FILMORE | Rising Country Music Artist',
-  description: 'FILMORE - Rising Country Music Artist from Wildwood, Missouri. Over 245 million career streams. Featured on Spotify Hot Country, The New York Times, NBC TODAY, and more.',
-  keywords: 'Filmore, Country Music, Nashville, Mr. 305 Records, ATYPICAL, Spotify Hot Country',
+  description: 'FILMORE - Rising Country Music Artist from Wildwood, Missouri. Over 245 million career streams. First independent artist on Spotify Hot Country cover. Now on Mr. 305 Records.',
+  keywords: 'Filmore, Country Music, Nashville, Mr. 305 Records, ATYPICAL, Spotify Hot Country, Wildwood Missouri, Tyler Filmore',
+  authors: [{ name: 'FILMORE' }],
+  creator: 'FILMORE',
+  metadataBase: new URL('https://filmore-bio.vercel.app'),
   openGraph: {
     title: 'FILMORE | Rising Country Music Artist',
-    description: 'Rising Country Music Artist from Wildwood, Missouri with over 245 million career streams.',
+    description: 'Rising Country Music Artist from Wildwood, Missouri. 245M+ streams. First independent artist on Spotify Hot Country cover.',
     type: 'website',
+    url: 'https://filmore-bio.vercel.app',
+    siteName: 'FILMORE',
+    images: [
+      {
+        url: '/images/filmore-hero.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'FILMORE - Country Music Artist',
+      },
+    ],
+    locale: 'en_US',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'FILMORE | Rising Country Music Artist',
+    description: 'Rising Country Music Artist from Wildwood, Missouri. 245M+ streams. First independent artist on Spotify Hot Country cover.',
     images: ['/images/filmore-hero.jpg'],
+    creator: '@filmoremusic',
+  },
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/icon.png', type: 'image/png', sizes: '32x32' },
+    ],
+    apple: '/apple-touch-icon.png',
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 }
 
@@ -20,6 +51,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/icon.png" type="image/png" sizes="32x32" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <meta name="theme-color" content="#2A2118" />
+      </head>
       <body>
         <div className="noise-overlay" aria-hidden="true"></div>
         {children}

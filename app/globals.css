@@ -199,7 +199,7 @@ body {
 .btn-primary {
   background: linear-gradient(135deg, var(--filmore-gold) 0%, var(--filmore-tan) 100%);
   color: var(--filmore-dark);
-  padding: 12px 32px;
+  padding: 12px 24px;
   border-radius: 4px;
   font-family: 'Oswald', sans-serif;
   font-weight: 500;
@@ -208,6 +208,17 @@ body {
   transition: all 0.3s ease;
   border: none;
   cursor: pointer;
+  font-size: 14px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .btn-primary {
+    padding: 12px 32px;
+  }
 }
 
 .btn-primary:hover {
@@ -218,7 +229,7 @@ body {
 .btn-outline {
   background: transparent;
   color: var(--filmore-gold);
-  padding: 12px 32px;
+  padding: 12px 24px;
   border-radius: 4px;
   font-family: 'Oswald', sans-serif;
   font-weight: 500;
@@ -227,11 +238,38 @@ body {
   transition: all 0.3s ease;
   border: 2px solid var(--filmore-gold);
   cursor: pointer;
+  font-size: 14px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .btn-outline {
+    padding: 12px 32px;
+  }
 }
 
 .btn-outline:hover {
   background: var(--filmore-gold);
   color: var(--filmore-dark);
+}
+
+/* Mobile-specific fixes */
+@media (max-width: 767px) {
+  .album-card:hover {
+    transform: none;
+  }
+  
+  .social-icon:hover {
+    transform: none;
+  }
+  
+  section {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 }
 
 /* Divider */
