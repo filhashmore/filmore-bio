@@ -238,7 +238,7 @@ export default function FilmoreEPK() {
               className="flex justify-center"
             >
               <img 
-                src="/images/filmore-logo-text.png" 
+                src="/images/filmore-logo-white.png" 
                 alt="FILMORE" 
                 className="h-24 md:h-32 lg:h-40 w-auto"
               />
@@ -634,11 +634,15 @@ export default function FilmoreEPK() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="group block"
               >
-                <div className="aspect-video bg-filmore-brown/30 rounded-sm overflow-hidden relative">
+                <div className="aspect-video bg-filmore-dark rounded-sm overflow-hidden relative">
                   <img 
-                    src={`https://img.youtube.com/vi/${video.videoId}/maxresdefault.jpg`}
+                    src={`https://img.youtube.com/vi/${video.videoId}/hqdefault.jpg`}
                     alt={video.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.src = `https://img.youtube.com/vi/${video.videoId}/mqdefault.jpg`;
+                    }}
                   />
                   <div className="absolute inset-0 bg-filmore-dark/30 group-hover:bg-filmore-dark/10 transition-colors" />
                   <div className="absolute inset-0 flex items-center justify-center">
@@ -695,11 +699,11 @@ export default function FilmoreEPK() {
               transition={{ duration: 0.8 }}
               className="relative"
             >
-              <div className="aspect-square rounded-sm overflow-hidden relative group shadow-2xl bg-filmore-dark">
+              <div className="aspect-square rounded-sm overflow-hidden relative group shadow-2xl">
                 <img 
                   src="/images/atypical-album.png" 
                   alt="ATYPICAL Album Cover"
-                  className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-105"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-filmore-dark/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>

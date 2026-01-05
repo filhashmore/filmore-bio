@@ -2,21 +2,21 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'FILMORE | Rising Country Music Artist',
+  title: 'FILMORE | Artist Bio',
   description: 'FILMORE - Rising Country Music Artist from Wildwood, Missouri. Over 245 million career streams. First independent artist on Spotify Hot Country cover. Now on Mr. 305 Records.',
   keywords: 'Filmore, Country Music, Nashville, Mr. 305 Records, ATYPICAL, Spotify Hot Country, Wildwood Missouri, Tyler Filmore',
   authors: [{ name: 'FILMORE' }],
   creator: 'FILMORE',
   metadataBase: new URL('https://filmore-bio.vercel.app'),
   openGraph: {
-    title: 'FILMORE | Rising Country Music Artist',
+    title: 'FILMORE | Artist Bio',
     description: 'Rising Country Music Artist from Wildwood, Missouri. 245M+ streams. First independent artist on Spotify Hot Country cover.',
     type: 'website',
     url: 'https://filmore-bio.vercel.app',
     siteName: 'FILMORE',
     images: [
       {
-        url: '/images/filmore-hero.jpg',
+        url: '/images/og-image.png',
         width: 1200,
         height: 630,
         alt: 'FILMORE - Country Music Artist',
@@ -26,9 +26,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'FILMORE | Rising Country Music Artist',
+    title: 'FILMORE | Artist Bio',
     description: 'Rising Country Music Artist from Wildwood, Missouri. 245M+ streams. First independent artist on Spotify Hot Country cover.',
-    images: ['/images/filmore-hero.jpg'],
+    images: ['/images/og-image.png'],
     creator: '@filmoremusic',
   },
   icons: {
