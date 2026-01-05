@@ -25,27 +25,32 @@ const latestReleases = [
   { 
     title: 'Love Lovin You', 
     trackId: '4BYeOgiYGilvy67AAOGJ4g',
-    spotifyUrl: 'https://open.spotify.com/track/4BYeOgiYGilvy67AAOGJ4g?si=3aa970a4cf0941b8'
+    spotifyUrl: 'https://open.spotify.com/track/4BYeOgiYGilvy67AAOGJ4g?si=3aa970a4cf0941b8',
+    image: '/images/cover-love-lovin-you.png'
   },
   { 
     title: 'Hola', 
     trackId: '0huIntjZ6mdOjk6Dts3j5P',
-    spotifyUrl: 'https://open.spotify.com/track/0huIntjZ6mdOjk6Dts3j5P?si=2ed87a6e37324ea2'
+    spotifyUrl: 'https://open.spotify.com/track/0huIntjZ6mdOjk6Dts3j5P?si=2ed87a6e37324ea2',
+    image: '/images/cover-hola.png'
   },
   { 
     title: 'Betcha Gonna', 
     trackId: '1RJbb6BXJW53LlbcOXahv1',
-    spotifyUrl: 'https://open.spotify.com/track/1RJbb6BXJW53LlbcOXahv1?si=c42b909f5fc647a7'
+    spotifyUrl: 'https://open.spotify.com/track/1RJbb6BXJW53LlbcOXahv1?si=c42b909f5fc647a7',
+    image: '/images/cover-betcha-gonna.png'
   },
   { 
     title: 'South On Me', 
     trackId: '4DNhJNM7vu2fYWKJllUBeu',
-    spotifyUrl: 'https://open.spotify.com/track/4DNhJNM7vu2fYWKJllUBeu?si=7db53fbedc804e16'
+    spotifyUrl: 'https://open.spotify.com/track/4DNhJNM7vu2fYWKJllUBeu?si=7db53fbedc804e16',
+    image: '/images/cover-south-on-me.png'
   },
   { 
     title: 'If I Was You', 
     trackId: '37I2TpB0m4MFflQJ7fd3S6',
-    spotifyUrl: 'https://open.spotify.com/track/37I2TpB0m4MFflQJ7fd3S6?si=963564ef632841f7'
+    spotifyUrl: 'https://open.spotify.com/track/37I2TpB0m4MFflQJ7fd3S6?si=963564ef632841f7',
+    image: '/images/cover-if-i-was-you.png'
   },
 ];
 
@@ -532,10 +537,12 @@ export default function FilmoreEPK() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="album-card group relative"
               >
-                <div className="aspect-square bg-gradient-to-br from-filmore-brown/40 to-filmore-dark/60 rounded-sm overflow-hidden relative border border-filmore-tan/20 hover:border-filmore-gold/50 transition-all">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <Disc3 className="w-16 h-16 text-filmore-tan/30 group-hover:text-filmore-gold/50 transition-colors" />
-                  </div>
+                <div className="aspect-square rounded-sm overflow-hidden relative border border-filmore-tan/20 hover:border-filmore-gold/50 transition-all">
+                  <img 
+                    src={album.image} 
+                    alt={album.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
                   <div className="album-overlay absolute inset-0 bg-filmore-gold/20 opacity-0 flex items-center justify-center transition-opacity duration-300">
                     <Play className="w-12 h-12 text-filmore-cream" />
                   </div>
@@ -618,7 +625,7 @@ export default function FilmoreEPK() {
           {/* Video Grid */}
           <div className="grid md:grid-cols-2 gap-6">
             {[
-              { title: 'If I Was You', videoId: 'Oh8IhZxdiT8' },
+              { title: 'IF I WAS YOU', videoId: 'Oh8IhZxdiT8' },
               { title: 'ABC NYE BTS', videoId: 'UuM2RiD1sfI' },
               { title: 'YEEHAW (Visual)', videoId: 'wYyOClehLVE' },
               { title: 'NBC 4th OF JULY', videoId: 'WNwIhm-b-4U' },
