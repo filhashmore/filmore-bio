@@ -17,7 +17,8 @@ import {
   Users,
   TrendingUp,
   Mail,
-  Phone
+  Phone,
+  Download
 } from 'lucide-react';
 
 // Album data - Latest Releases with correct Spotify track links
@@ -265,10 +266,12 @@ export default function FilmoreEPK() {
                 Listen Now
               </a>
               <a 
-                href="#about"
+                href="/FILMORE_Bio.pdf"
+                download="FILMORE_Bio.pdf"
                 className="btn-outline flex items-center gap-2"
               >
-                Learn More
+                <Download className="w-5 h-5" />
+                Download PDF
               </a>
             </motion.div>
           </motion.div>
@@ -537,16 +540,18 @@ export default function FilmoreEPK() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="album-card group relative"
               >
-                <div className="aspect-square rounded-sm overflow-hidden relative border border-filmore-tan/20 hover:border-filmore-gold/50 transition-all">
-                  <img 
-                    src={album.image} 
-                    alt={album.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="album-overlay absolute inset-0 bg-filmore-gold/20 opacity-0 flex items-center justify-center transition-opacity duration-300">
-                    <Play className="w-12 h-12 text-filmore-cream" />
+                <div className="aspect-square rounded-sm overflow-visible relative border border-filmore-tan/20 hover:border-filmore-gold/50 transition-all">
+                  <div className="absolute inset-0 rounded-sm overflow-hidden">
+                    <img 
+                      src={album.image} 
+                      alt={album.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="album-overlay absolute inset-0 bg-filmore-gold/20 opacity-0 flex items-center justify-center transition-opacity duration-300">
+                      <Play className="w-12 h-12 text-filmore-cream" />
+                    </div>
                   </div>
-                  <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-filmore-dark to-transparent">
+                  <div className="absolute -bottom-1 left-0 right-0 p-3 pt-8 bg-gradient-to-t from-filmore-dark via-filmore-dark/90 to-transparent rounded-b-sm">
                     <div className="font-display text-sm text-filmore-cream tracking-wider">{album.title}</div>
                     <div className="flex items-center gap-1 mt-1">
                       <Disc3 className="w-3 h-3 text-[#1DB954]" />
