@@ -240,7 +240,7 @@ export default function FilmoreEPK() {
               <img 
                 src="/images/filmore-logo-white.png" 
                 alt="FILMORE" 
-                className="h-24 md:h-32 lg:h-40 w-auto"
+                className="max-h-16 md:max-h-24 lg:max-h-32 w-auto max-w-[80vw] object-contain"
               />
             </motion.div>
 
