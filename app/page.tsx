@@ -17,9 +17,7 @@ import {
   Users,
   TrendingUp,
   Mail,
-  Phone,
-  Download,
-  Camera
+  Phone
 } from 'lucide-react';
 
 // Album data from the PDF
@@ -78,16 +76,6 @@ const playlistGoals = [
   { name: 'Country Heat', platform: 'Amazon Music' },
 ];
 
-// Press Photos
-const pressPhotos = [
-  { src: '/images/press-1.jpg', alt: 'FILMORE - Denim jacket seated portrait', aspect: 'landscape' },
-  { src: '/images/press-2.jpg', alt: 'FILMORE - Orange jacket profile', aspect: 'landscape' },
-  { src: '/images/press-3.jpg', alt: 'FILMORE - Black sweater portrait', aspect: 'portrait' },
-  { src: '/images/press-4.jpg', alt: 'FILMORE - Backstage lights', aspect: 'landscape' },
-  { src: '/images/press-5.jpg', alt: 'FILMORE - Cream sweater portrait', aspect: 'portrait' },
-  { src: '/images/press-6.jpg', alt: 'FILMORE - Stage lights wide', aspect: 'landscape' },
-];
-
 // Contact Information
 const bookingContact = {
   title: 'Day-to-Day Manager',
@@ -131,7 +119,6 @@ export default function FilmoreEPK() {
     { id: 'about', label: 'About' },
     { id: 'stats', label: 'Stats' },
     { id: 'music', label: 'Music' },
-    { id: 'photos', label: 'Photos' },
     { id: 'videos', label: 'Videos' },
     { id: 'atypical', label: 'ATYPICAL' },
     { id: 'contact', label: 'Contact' },
@@ -154,9 +141,9 @@ export default function FilmoreEPK() {
             className="relative z-50"
           >
             <img 
-              src="/images/f-logo.png" 
+              src="/images/f-only-white.png" 
               alt="FILMORE" 
-              className="h-12 w-auto invert"
+              className="h-12 w-auto"
             />
           </motion.a>
 
@@ -313,8 +300,17 @@ export default function FilmoreEPK() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="relative py-24 md:py-32 px-6 bg-gradient-to-b from-filmore-dark via-filmore-brown/20 to-filmore-dark">
-        <div className="max-w-6xl mx-auto">
+      <section id="about" className="relative py-24 md:py-32 px-6 min-h-screen overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="/images/bg-1.jpg" 
+            alt="" 
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-filmore-dark/80" />
+        </div>
+        <div className="max-w-6xl mx-auto relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -416,12 +412,15 @@ export default function FilmoreEPK() {
       </section>
 
       {/* Stats Section */}
-      <section id="stats" className="relative py-24 md:py-32 px-6 overflow-hidden">
-        {/* Background pattern */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(212,168,83,0.1) 35px, rgba(212,168,83,0.1) 70px)`
-          }} />
+      <section id="stats" className="relative py-24 md:py-32 px-6 min-h-screen overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="/images/bg-2.jpg" 
+            alt="" 
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-filmore-dark/75" />
         </div>
 
         <div className="max-w-6xl mx-auto relative z-10">
@@ -470,8 +469,17 @@ export default function FilmoreEPK() {
       </section>
 
       {/* Music Section */}
-      <section id="music" className="relative py-24 md:py-32 px-6 bg-gradient-to-b from-filmore-dark via-filmore-brown/10 to-filmore-dark">
-        <div className="max-w-6xl mx-auto">
+      <section id="music" className="relative py-24 md:py-32 px-6 min-h-screen overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="/images/bg-3.jpg" 
+            alt="" 
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-filmore-dark/80" />
+        </div>
+        <div className="max-w-6xl mx-auto relative z-10">
           {/* Latest Releases */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -573,71 +581,18 @@ export default function FilmoreEPK() {
         </div>
       </section>
 
-      {/* Photos Section */}
-      <section id="photos" className="relative py-24 md:py-32 px-6 bg-gradient-to-b from-filmore-dark via-filmore-brown/10 to-filmore-dark">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <span className="font-display text-filmore-gold text-sm tracking-[0.3em] uppercase">Press Photos</span>
-            <h2 className="font-accent text-5xl md:text-6xl mt-4">GALLERY</h2>
-          </motion.div>
-
-          {/* Photo Grid - Masonry-style layout */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-            {pressPhotos.map((photo, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className={`relative overflow-hidden rounded-sm group cursor-pointer ${
-                  photo.aspect === 'portrait' ? 'row-span-2' : ''
-                }`}
-              >
-                <div className={`relative ${photo.aspect === 'portrait' ? 'aspect-[3/4]' : 'aspect-[4/3]'}`}>
-                  <img 
-                    src={photo.src} 
-                    alt={photo.alt}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-filmore-dark/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                    <a 
-                      href={photo.src} 
-                      download
-                      className="inline-flex items-center gap-2 text-sm text-filmore-gold hover:text-filmore-cream transition-colors"
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      <Download className="w-4 h-4" />
-                      Download Hi-Res
-                    </a>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="text-center text-filmore-tan/60 text-sm mt-8"
-          >
-            Click any image to download high-resolution press photo
-          </motion.p>
-        </div>
-      </section>
-
       {/* Videos Section */}
-      <section id="videos" className="relative py-24 md:py-32 px-6">
-        <div className="max-w-6xl mx-auto">
+      <section id="videos" className="relative py-24 md:py-32 px-6 min-h-screen overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="/images/bg-4.jpg" 
+            alt="" 
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-filmore-dark/75" />
+        </div>
+        <div className="max-w-6xl mx-auto relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -702,10 +657,15 @@ export default function FilmoreEPK() {
       </section>
 
       {/* ATYPICAL Section */}
-      <section id="atypical" className="relative py-24 md:py-32 px-6 bg-gradient-to-b from-filmore-dark via-filmore-brown/20 to-filmore-dark overflow-hidden">
-        {/* Background decoration */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-filmore-gold blur-[200px]" />
+      <section id="atypical" className="relative py-24 md:py-32 px-6 min-h-screen overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="/images/bg-5.jpg" 
+            alt="" 
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-filmore-dark/80" />
         </div>
 
         <div className="max-w-6xl mx-auto relative z-10">
@@ -789,8 +749,17 @@ export default function FilmoreEPK() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="relative py-24 md:py-32 px-6">
-        <div className="max-w-4xl mx-auto">
+      <section id="contact" className="relative py-24 md:py-32 px-6 min-h-screen overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="/images/bg-6.jpg" 
+            alt="" 
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-filmore-dark/80" />
+        </div>
+        <div className="max-w-4xl mx-auto relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -856,9 +825,9 @@ export default function FilmoreEPK() {
             {/* Logo & Description */}
             <div>
               <img 
-                src="/images/f-logo.png" 
+                src="/images/f-only-white.png" 
                 alt="FILMORE" 
-                className="h-16 w-auto invert mb-4"
+                className="h-16 w-auto mb-4"
               />
               <p className="text-filmore-cream/60 text-sm leading-relaxed">
                 Rising Country Music Artist from Wildwood, Missouri. Over 245 million career streams and counting.
