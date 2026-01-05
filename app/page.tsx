@@ -888,6 +888,13 @@ export default function FilmoreEPK() {
                 >
                   Official Website
                 </a>
+                <a
+                  href="/FILMORE_Bio.pdf"
+                  download="FILMORE_Bio.pdf"
+                  className="block text-filmore-cream/60 hover:text-filmore-gold transition-colors text-sm"
+                >
+                  Download PDF
+                </a>
               </div>
             </div>
 
