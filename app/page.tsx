@@ -20,41 +20,42 @@ import {
   Phone
 } from 'lucide-react';
 
-// Album data from the PDF
+// Album data - Latest Releases with correct Spotify track links
 const latestReleases = [
   { 
     title: 'Love Lovin You', 
-    image: 'https://i.scdn.co/image/ab67616d0000b273a0e3d9a0a7a8b9b8c7d6e5f4',
-    spotifyUrl: 'https://open.spotify.com/search/filmore%20love%20lovin%20you'
+    trackId: '4BYeOgiYGilvy67AAOGJ4g',
+    spotifyUrl: 'https://open.spotify.com/track/4BYeOgiYGilvy67AAOGJ4g?si=3aa970a4cf0941b8'
   },
   { 
     title: 'Hola', 
-    image: 'https://i.scdn.co/image/ab67616d0000b273b1c2d3e4f5a6b7c8d9e0f1a2',
-    spotifyUrl: 'https://open.spotify.com/search/filmore%20hola'
+    trackId: '0huIntjZ6mdOjk6Dts3j5P',
+    spotifyUrl: 'https://open.spotify.com/track/0huIntjZ6mdOjk6Dts3j5P?si=2ed87a6e37324ea2'
   },
   { 
     title: 'Betcha Gonna', 
-    image: 'https://i.scdn.co/image/ab67616d0000b273c2d3e4f5a6b7c8d9e0f1a2b3',
-    spotifyUrl: 'https://open.spotify.com/search/filmore%20betcha%20gonna'
+    trackId: '1RJbb6BXJW53LlbcOXahv1',
+    spotifyUrl: 'https://open.spotify.com/track/1RJbb6BXJW53LlbcOXahv1?si=c42b909f5fc647a7'
   },
   { 
     title: 'South On Me', 
-    image: 'https://i.scdn.co/image/ab67616d0000b273d3e4f5a6b7c8d9e0f1a2b3c4',
-    spotifyUrl: 'https://open.spotify.com/search/filmore%20south%20on%20me'
+    trackId: '4DNhJNM7vu2fYWKJllUBeu',
+    spotifyUrl: 'https://open.spotify.com/track/4DNhJNM7vu2fYWKJllUBeu?si=7db53fbedc804e16'
   },
   { 
     title: 'If I Was You', 
-    image: 'https://i.scdn.co/image/ab67616d0000b273e4f5a6b7c8d9e0f1a2b3c4d5',
-    spotifyUrl: 'https://open.spotify.com/search/filmore%20if%20i%20was%20you'
+    trackId: '37I2TpB0m4MFflQJ7fd3S6',
+    spotifyUrl: 'https://open.spotify.com/track/37I2TpB0m4MFflQJ7fd3S6?si=963564ef632841f7'
   },
 ];
 
+// Top Tracks with correct Spotify track links
 const fanFavorites = [
-  { title: 'Good Riddance', spotifyUrl: 'https://open.spotify.com/search/filmore%20good%20riddance' },
-  { title: 'Love That About You', spotifyUrl: 'https://open.spotify.com/search/filmore%20love%20that%20about%20you' },
-  { title: 'Slower', spotifyUrl: 'https://open.spotify.com/search/filmore%20slower' },
-  { title: 'Somewhere With Beer', spotifyUrl: 'https://open.spotify.com/search/filmore%20somewhere%20with%20beer' },
-  { title: "Nothing's Better", spotifyUrl: 'https://open.spotify.com/search/filmore%20nothings%20better' },
+  { title: 'Good Riddance', trackId: '3WwZbPizrnJqJFx86kNPs1', spotifyUrl: 'https://open.spotify.com/track/3WwZbPizrnJqJFx86kNPs1?si=eff83d5fb4df433b' },
+  { title: 'Love That About You', trackId: '4nWHhF8R5RkTtFotcsOYnz', spotifyUrl: 'https://open.spotify.com/track/4nWHhF8R5RkTtFotcsOYnz?si=161eb1e59f5a42ec' },
+  { title: 'Slower', trackId: '3kb9vlB7NCKHNHvYyp8EaL', spotifyUrl: 'https://open.spotify.com/track/3kb9vlB7NCKHNHvYyp8EaL?si=517822ffab61446a' },
+  { title: 'Somewhere With Beer', trackId: '2qa1gBkgc1OaZAWiF9DCzz', spotifyUrl: 'https://open.spotify.com/track/2qa1gBkgc1OaZAWiF9DCzz?si=95aecfdd964c482a' },
+  { title: "Nothing's Better", trackId: '1LtiNpTzzSX8qcvlPFLmeR', spotifyUrl: 'https://open.spotify.com/track/1LtiNpTzzSX8qcvlPFLmeR?si=a4d1cb159a7a4c1e' },
 ];
 
 // Correct Spotify Artist ID from web search
@@ -230,14 +231,18 @@ export default function FilmoreEPK() {
               Rising Country Music Artist from Wildwood, Missouri
             </motion.p>
             
-            <motion.h1 
+            <motion.div 
               initial={{ opacity: 0, scale: 0.9 }}
               animate={isLoaded ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.8, delay: 0.7 }}
-              className="font-accent text-[12vw] md:text-[10vw] leading-none tracking-wider"
+              className="flex justify-center"
             >
-              <span className="text-gradient">FILMORE</span>
-            </motion.h1>
+              <img 
+                src="/images/filmore-logo-text.png" 
+                alt="FILMORE" 
+                className="h-24 md:h-32 lg:h-40 w-auto"
+              />
+            </motion.div>
 
             <motion.div
               initial={{ opacity: 0 }}
@@ -329,9 +334,9 @@ export default function FilmoreEPK() {
               >
                 <div className="aspect-[4/5] overflow-hidden rounded-sm">
                   <img
-                    src="/images/filmore-hero.jpg"
+                    src="/images/bg-1.jpg"
                     alt="FILMORE"
-                    className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                    className="w-full h-full object-cover"
                   />
                 </div>
                 {/* Decorative elements */}
@@ -527,13 +532,19 @@ export default function FilmoreEPK() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="album-card group relative"
               >
-                <div className="aspect-square bg-filmore-brown/30 rounded-sm overflow-hidden relative">
-                  <div className="absolute inset-0 bg-gradient-to-t from-filmore-dark via-transparent to-transparent opacity-60" />
+                <div className="aspect-square bg-gradient-to-br from-filmore-brown/40 to-filmore-dark/60 rounded-sm overflow-hidden relative border border-filmore-tan/20 hover:border-filmore-gold/50 transition-all">
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <Disc3 className="w-16 h-16 text-filmore-tan/30 group-hover:text-filmore-gold/50 transition-colors" />
+                  </div>
                   <div className="album-overlay absolute inset-0 bg-filmore-gold/20 opacity-0 flex items-center justify-center transition-opacity duration-300">
                     <Play className="w-12 h-12 text-filmore-cream" />
                   </div>
-                  <div className="absolute bottom-0 left-0 right-0 p-3">
+                  <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-filmore-dark to-transparent">
                     <div className="font-display text-sm text-filmore-cream tracking-wider">{album.title}</div>
+                    <div className="flex items-center gap-1 mt-1">
+                      <Disc3 className="w-3 h-3 text-[#1DB954]" />
+                      <span className="text-xs text-filmore-tan/60">Spotify</span>
+                    </div>
                   </div>
                 </div>
               </motion.a>
@@ -601,37 +612,43 @@ export default function FilmoreEPK() {
             className="text-center mb-16"
           >
             <span className="font-display text-filmore-gold text-sm tracking-[0.3em] uppercase">Visual Content</span>
-            <h2 className="font-accent text-5xl md:text-6xl mt-4">MUSIC VIDEOS</h2>
+            <h2 className="font-accent text-5xl md:text-6xl mt-4">FEATURED VIDEOS</h2>
           </motion.div>
 
           {/* Video Grid */}
           <div className="grid md:grid-cols-2 gap-6">
             {[
-              { title: 'If I Was You', videoId: 'dQw4w9WgXcQ' },
-              { title: 'Love That About You', videoId: 'dQw4w9WgXcQ' },
-              { title: 'Slower', videoId: 'dQw4w9WgXcQ' },
-              { title: 'South On Me', videoId: 'dQw4w9WgXcQ' },
+              { title: 'If I Was You', videoId: 'Oh8IhZxdiT8' },
+              { title: 'ABC NYE BTS', videoId: 'UuM2RiD1sfI' },
+              { title: 'YEEHAW (Visual)', videoId: 'wYyOClehLVE' },
+              { title: 'NBC 4th OF JULY', videoId: 'WNwIhm-b-4U' },
             ].map((video, index) => (
-              <motion.div
+              <motion.a
                 key={video.title}
+                href={`https://www.youtube.com/watch?v=${video.videoId}`}
+                target="_blank"
+                rel="noopener noreferrer"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group"
+                className="group block"
               >
                 <div className="aspect-video bg-filmore-brown/30 rounded-sm overflow-hidden relative">
-                  <iframe
-                    className="w-full h-full"
-                    src={`https://www.youtube.com/embed/search?query=filmore+${video.title.replace(/ /g, '+')}`}
-                    title={video.title}
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
+                  <img 
+                    src={`https://img.youtube.com/vi/${video.videoId}/maxresdefault.jpg`}
+                    alt={video.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
+                  <div className="absolute inset-0 bg-filmore-dark/30 group-hover:bg-filmore-dark/10 transition-colors" />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-16 h-16 rounded-full bg-filmore-gold/90 flex items-center justify-center group-hover:scale-110 transition-transform">
+                      <Play className="w-8 h-8 text-filmore-dark ml-1" fill="currentColor" />
+                    </div>
+                  </div>
                 </div>
-                <h4 className="font-display text-lg mt-4 text-filmore-cream tracking-wider">{video.title}</h4>
-              </motion.div>
+                <h4 className="font-display text-lg mt-4 text-filmore-cream tracking-wider group-hover:text-filmore-gold transition-colors">{video.title}</h4>
+              </motion.a>
             ))}
           </div>
 
@@ -644,7 +661,7 @@ export default function FilmoreEPK() {
             className="text-center mt-12"
           >
             <a 
-              href="https://www.youtube.com/@filmoremusic"
+              href="https://www.youtube.com/@FILMOREMUSIC/videos"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-outline inline-flex items-center gap-2"
@@ -678,11 +695,11 @@ export default function FilmoreEPK() {
               transition={{ duration: 0.8 }}
               className="relative"
             >
-              <div className="aspect-square rounded-sm overflow-hidden relative group shadow-2xl border border-filmore-tan/20">
+              <div className="aspect-square rounded-sm overflow-hidden relative group shadow-2xl bg-filmore-dark">
                 <img 
                   src="/images/atypical-album.png" 
                   alt="ATYPICAL Album Cover"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-filmore-dark/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
@@ -711,9 +728,9 @@ export default function FilmoreEPK() {
                 Filmore is currently in the studio crafting his fourth full-length project, <span className="text-filmore-gold font-semibold">'ATYPICAL'</span>, his first album release under <span className="text-filmore-tan">Mr.305 Records</span>. The 15-track album dives into the heart of country-pop, showcasing Filmore's signature blend of catchy hooks, heartfelt storytelling, and genre-bending production.
               </p>
 
-              {/* Playlist Goals */}
+              {/* Playlist Spots */}
               <div className="mb-8">
-                <h4 className="font-display text-sm tracking-[0.2em] uppercase text-filmore-tan mb-4">Playlist Goals</h4>
+                <h4 className="font-display text-sm tracking-[0.2em] uppercase text-filmore-tan mb-4">Playlist Spots</h4>
                 <div className="grid grid-cols-2 gap-3">
                   {playlistGoals.map((playlist, index) => (
                     <motion.div
@@ -735,7 +752,7 @@ export default function FilmoreEPK() {
               </div>
 
               <a 
-                href={SPOTIFY_ARTIST_URL}
+                href="https://open.spotify.com/prerelease/6Iieqpd3lBD8qzueoFrTz7?si=7a4586a7fb924736"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-primary inline-flex items-center gap-2"
