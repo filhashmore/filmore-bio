@@ -95,13 +95,22 @@ export default function FilmoreEPK() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isMobile, setIsMobile] = useState(true); // Default to mobile to prevent scale on first render
   const containerRef = useRef<HTMLDivElement>(null);
   
   const { scrollYProgress } = useScroll();
   const heroOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
+  // Scale effect disabled on mobile for performance
   const heroScale = useTransform(scrollYProgress, [0, 0.15], [1, 1.1]);
 
   useEffect(() => {
+    // Detect mobile/tablet devices
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+    checkMobile(); // Check immediately on mount
+    window.addEventListener('resize', checkMobile);
+    
     setIsLoaded(true);
     
     // Intersection Observer for section tracking
@@ -118,8 +127,21 @@ export default function FilmoreEPK() {
     );
 
     sections.forEach((section) => observer.observe(section));
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('resize', checkMobile);
+    };
   }, []);
+
+  // Mobile-optimized viewport settings for smoother scroll animations
+  const mobileViewport = { once: true, margin: "-50px" };
+  const desktopViewport = { once: true, margin: "-100px" };
+  const viewportConfig = isMobile ? mobileViewport : desktopViewport;
+  
+  // Simplified animation for mobile
+  const mobileTransition = { duration: 0.4, ease: "easeOut" };
+  const desktopTransition = { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] };
+  const transitionConfig = isMobile ? mobileTransition : desktopTransition;
 
   const navItems = [
     { id: 'hero', label: 'Home' },
@@ -137,7 +159,7 @@ export default function FilmoreEPK() {
       <motion.nav 
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        transition={{ duration: 0.8, delay: 0.5 }}
+        transition={{ duration: isMobile ? 0.3 : 0.8, delay: 0.5 }}
         className="fixed top-0 left-0 right-0 z-50 px-6 py-4"
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between">
@@ -192,7 +214,7 @@ export default function FilmoreEPK() {
                   <motion.a
                     key={item.id}
                     href={`#${item.id}`}
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: isMobile ? 8 : 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.1 }}
                     onClick={() => setIsMenuOpen(false)}
@@ -210,8 +232,12 @@ export default function FilmoreEPK() {
       {/* Hero Section */}
       <section id="hero" className="relative h-screen overflow-hidden">
         <motion.div 
-          style={{ opacity: heroOpacity, scale: heroScale }}
-          className="absolute inset-0"
+          style={{ 
+            opacity: heroOpacity,
+            // Only apply scale on desktop - it causes lag on mobile/tablet
+            scale: isMobile ? 1 : heroScale
+          }}
+          className="absolute inset-0 will-change-[opacity,transform]"
         >
           <div className="absolute inset-0 bg-gradient-to-b from-filmore-dark/30 via-transparent to-filmore-dark z-10" />
           <img
@@ -223,7 +249,7 @@ export default function FilmoreEPK() {
 
         <div className="relative z-20 h-full flex flex-col items-center justify-center px-6">
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: isMobile ? 15 : 40 }}
             animate={isLoaded ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1, delay: 0.3 }}
             className="text-center"
@@ -240,7 +266,7 @@ export default function FilmoreEPK() {
             <motion.div 
               initial={{ opacity: 0, scale: 0.9 }}
               animate={isLoaded ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.8, delay: 0.7 }}
+              transition={{ duration: isMobile ? 0.3 : 0.8, delay: 0.7 }}
               className="flex justify-center"
             >
               <img 
@@ -253,7 +279,7 @@ export default function FilmoreEPK() {
             <motion.div
               initial={{ opacity: 0 }}
               animate={isLoaded ? { opacity: 1 } : {}}
-              transition={{ duration: 0.8, delay: 1.2 }}
+              transition={{ duration: isMobile ? 0.3 : 0.8, delay: 1.2 }}
               className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4"
             >
               <a 
@@ -280,7 +306,7 @@ export default function FilmoreEPK() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={isLoaded ? { opacity: 1 } : {}}
-            transition={{ duration: 0.8, delay: 1.5 }}
+            transition={{ duration: isMobile ? 0.3 : 0.8, delay: 1.5 }}
             className="absolute bottom-12 left-1/2 -translate-x-1/2"
           >
             <motion.div
@@ -301,7 +327,7 @@ export default function FilmoreEPK() {
           rel="noopener noreferrer"
           initial={{ opacity: 0 }}
           animate={isLoaded ? { opacity: 1 } : {}}
-          transition={{ duration: 0.8, delay: 1.8 }}
+          transition={{ duration: isMobile ? 0.3 : 0.8, delay: 1.8 }}
           className="absolute bottom-6 right-6 z-20"
         >
           <img 
@@ -325,10 +351,10 @@ export default function FilmoreEPK() {
         </div>
         <div className="max-w-6xl mx-auto relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: isMobile ? 15 : 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: isMobile ? 0.3 : 0.8 }}
             className="grid md:grid-cols-2 gap-12 md:gap-16 items-center"
           >
             {/* Image */}
@@ -337,7 +363,7 @@ export default function FilmoreEPK() {
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.2 }}
+                transition={{ duration: isMobile ? 0.3 : 0.8, delay: 0.2 }}
                 className="relative z-10"
               >
                 <div className="aspect-[4/5] overflow-hidden rounded-sm">
@@ -358,27 +384,27 @@ export default function FilmoreEPK() {
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
+                transition={{ duration: isMobile ? 0.25 : 0.6 }}
                 className="inline-block font-display text-filmore-gold text-sm tracking-[0.3em] uppercase mb-4"
               >
                 About The Artist
               </motion.span>
               
               <motion.h2
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: isMobile ? 8 : 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.1 }}
+                transition={{ duration: isMobile ? 0.25 : 0.6, delay: 0.1 }}
                 className="font-accent text-5xl md:text-6xl mb-6"
               >
                 FILMORE
               </motion.h2>
 
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: isMobile ? 8 : 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
+                transition={{ duration: isMobile ? 0.25 : 0.6, delay: 0.2 }}
                 className="space-y-4 text-filmore-cream/80 leading-relaxed"
               >
                 <p>
@@ -397,10 +423,10 @@ export default function FilmoreEPK() {
 
               {/* Quick Stats */}
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: isMobile ? 8 : 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.3 }}
+                transition={{ duration: isMobile ? 0.25 : 0.6, delay: 0.3 }}
                 className="mt-8 grid grid-cols-3 gap-4"
               >
                 <div className="text-center p-4 bg-filmore-dark/50 rounded-sm border border-filmore-tan/20">
@@ -438,10 +464,10 @@ export default function FilmoreEPK() {
 
         <div className="max-w-6xl mx-auto relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: isMobile ? 8 : 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: isMobile ? 0.25 : 0.6 }}
             className="text-center mb-16"
           >
             <span className="font-display text-filmore-gold text-sm tracking-[0.3em] uppercase">Social Presence</span>
@@ -456,10 +482,10 @@ export default function FilmoreEPK() {
                 href={stat.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: isMobile ? 10 : 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                transition={{ duration: isMobile ? 0.2 : 0.5, delay: index * 0.1 }}
                 whileHover={{ y: -8, scale: 1.02 }}
                 className="group relative bg-filmore-dark/80 border border-filmore-tan/20 rounded-sm p-6 text-center hover:border-filmore-gold/50 transition-all duration-300"
               >
@@ -495,10 +521,10 @@ export default function FilmoreEPK() {
         <div className="max-w-6xl mx-auto relative z-10">
           {/* Latest Releases */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: isMobile ? 8 : 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: isMobile ? 0.25 : 0.6 }}
             className="text-center mb-16"
           >
             <span className="font-display text-filmore-gold text-sm tracking-[0.3em] uppercase">Discography</span>
@@ -507,10 +533,10 @@ export default function FilmoreEPK() {
 
           {/* Spotify Embed */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: isMobile ? 10 : 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: isMobile ? 0.25 : 0.6, delay: 0.2 }}
             className="mb-16"
           >
             <iframe 
@@ -534,10 +560,10 @@ export default function FilmoreEPK() {
                 href={album.spotifyUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: isMobile ? 10 : 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                transition={{ duration: isMobile ? 0.2 : 0.5, delay: index * 0.1 }}
                 className="album-card group relative"
               >
                 <div className="aspect-square rounded-sm overflow-visible relative border border-filmore-tan/20 hover:border-filmore-gold/50 transition-all">
@@ -568,10 +594,10 @@ export default function FilmoreEPK() {
 
           {/* Fan Favorites */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: isMobile ? 8 : 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: isMobile ? 0.25 : 0.6 }}
             className="text-center mb-12"
           >
             <span className="font-display text-filmore-gold text-sm tracking-[0.3em] uppercase">Fan Favorites</span>
@@ -617,10 +643,10 @@ export default function FilmoreEPK() {
         </div>
         <div className="max-w-6xl mx-auto relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: isMobile ? 8 : 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: isMobile ? 0.25 : 0.6 }}
             className="text-center mb-16"
           >
             <span className="font-display text-filmore-gold text-sm tracking-[0.3em] uppercase">Visual Content</span>
@@ -640,10 +666,10 @@ export default function FilmoreEPK() {
                 href={`https://www.youtube.com/watch?v=${video.videoId}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: isMobile ? 10 : 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                transition={{ duration: isMobile ? 0.2 : 0.5, delay: index * 0.1 }}
                 className="group block"
               >
                 <div className="aspect-video bg-filmore-dark rounded-sm overflow-hidden relative">
@@ -673,7 +699,7 @@ export default function FilmoreEPK() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            transition={{ duration: isMobile ? 0.25 : 0.6, delay: 0.4 }}
             className="text-center mt-12"
           >
             <a 
@@ -708,7 +734,7 @@ export default function FilmoreEPK() {
               initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: isMobile ? 0.3 : 0.8 }}
               className="relative"
             >
               <div className="aspect-square rounded-sm overflow-hidden relative group shadow-2xl">
@@ -735,7 +761,7 @@ export default function FilmoreEPK() {
               initial={{ opacity: 0, x: 40 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              transition={{ duration: isMobile ? 0.3 : 0.8, delay: 0.2 }}
             >
               <span className="font-display text-filmore-gold text-sm tracking-[0.3em] uppercase">New Album</span>
               <h2 className="font-accent text-6xl md:text-7xl mt-4 mb-6">ATYPICAL</h2>
@@ -794,10 +820,10 @@ export default function FilmoreEPK() {
         </div>
         <div className="max-w-4xl mx-auto relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: isMobile ? 8 : 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: isMobile ? 0.25 : 0.6 }}
             className="text-center mb-16"
           >
             <span className="font-display text-filmore-gold text-sm tracking-[0.3em] uppercase">Get In Touch</span>
@@ -805,10 +831,10 @@ export default function FilmoreEPK() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: isMobile ? 10 : 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: isMobile ? 0.25 : 0.6, delay: 0.2 }}
             className="bg-gradient-to-br from-filmore-brown/30 to-filmore-dark border border-filmore-tan/20 rounded-sm p-8 md:p-12"
           >
             <div className="text-center">
@@ -843,7 +869,7 @@ export default function FilmoreEPK() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            transition={{ duration: isMobile ? 0.25 : 0.6, delay: 0.4 }}
             className="text-center text-filmore-tan/60 text-sm mt-8"
           >
             For all booking inquiries, please contact management directly
