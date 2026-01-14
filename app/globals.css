@@ -272,36 +272,6 @@ body {
   }
 }
 
-/* Mobile and tablet performance optimizations */
-@media (max-width: 1023px) {
-  /* Reduce animation complexity on mobile/tablet */
-  * {
-    -webkit-transform: translateZ(0);
-    -webkit-backface-visibility: hidden;
-  }
-  
-  /* Disable parallax effects */
-  .parallax-slow,
-  .parallax-fast {
-    transform: none !important;
-  }
-  
-  /* Optimize images for mobile GPU */
-  img {
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-  }
-  
-  /* Reduce motion for those who prefer it */
-  @media (prefers-reduced-motion: reduce) {
-    * {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-    }
-  }
-}
-
 /* Force GPU acceleration for smooth animations */
 .will-change-transform {
   will-change: transform;
@@ -329,7 +299,7 @@ body {
 }
 
 /* ==========================================
-   MOBILE PERFORMANCE OPTIMIZATIONS
+   ACCESSIBILITY & PERFORMANCE
    ========================================== */
 
 /* Reduce motion for users who prefer it */
@@ -341,7 +311,7 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-  
+
   html {
     scroll-behavior: auto;
   }
@@ -350,37 +320,44 @@ body {
 /* Mobile and tablet performance optimizations */
 @media (max-width: 1023px) {
   /* Force GPU acceleration for smoother animations */
+  *,
   section {
-    transform: translateZ(0);
     -webkit-transform: translateZ(0);
-    backface-visibility: hidden;
+    transform: translateZ(0);
     -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
   }
-  
+
+  /* Disable parallax effects */
+  .parallax-slow,
+  .parallax-fast {
+    transform: none !important;
+  }
+
   /* Optimize images for mobile */
   img {
     transform: translateZ(0);
     -webkit-transform: translateZ(0);
   }
-  
+
   /* Reduce animation complexity on touch devices */
   .album-card,
   .social-icon,
   .stat-card {
     transition-duration: 0.2s !important;
   }
-  
+
   /* Disable hover effects that cause repaints on mobile */
   .album-card:hover img,
   .group:hover img {
     transform: none !important;
   }
-  
+
   /* Smoother scroll behavior */
   html {
     -webkit-overflow-scrolling: touch;
   }
-  
+
   /* Prevent layout shifts during animation */
   [class*="motion"] {
     will-change: auto;

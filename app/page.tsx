@@ -2,94 +2,32 @@
 
 import { useEffect, useState, useRef } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
-import { 
-  Play, 
-  Instagram, 
-  Facebook, 
-  Youtube, 
-  Music2, 
+import {
+  Play,
   ChevronDown,
   ExternalLink,
   Menu,
   X,
   Disc3,
-  Mic2,
-  Users,
-  TrendingUp,
   Mail,
   Phone,
   Download
 } from 'lucide-react';
 
-// Album data - Latest Releases with correct Spotify track links
-const latestReleases = [
-  { 
-    title: 'Love Lovin You', 
-    trackId: '4BYeOgiYGilvy67AAOGJ4g',
-    spotifyUrl: 'https://open.spotify.com/track/4BYeOgiYGilvy67AAOGJ4g?si=3aa970a4cf0941b8',
-    image: '/images/cover-love-lovin-you.png'
-  },
-  { 
-    title: 'Hola', 
-    trackId: '0huIntjZ6mdOjk6Dts3j5P',
-    spotifyUrl: 'https://open.spotify.com/track/0huIntjZ6mdOjk6Dts3j5P?si=2ed87a6e37324ea2',
-    image: '/images/cover-hola.png'
-  },
-  { 
-    title: 'Betcha Gonna', 
-    trackId: '1RJbb6BXJW53LlbcOXahv1',
-    spotifyUrl: 'https://open.spotify.com/track/1RJbb6BXJW53LlbcOXahv1?si=c42b909f5fc647a7',
-    image: '/images/cover-betcha-gonna.png'
-  },
-  { 
-    title: 'South On Me', 
-    trackId: '4DNhJNM7vu2fYWKJllUBeu',
-    spotifyUrl: 'https://open.spotify.com/track/4DNhJNM7vu2fYWKJllUBeu?si=7db53fbedc804e16',
-    image: '/images/cover-south-on-me.png'
-  },
-  { 
-    title: 'If I Was You', 
-    trackId: '37I2TpB0m4MFflQJ7fd3S6',
-    spotifyUrl: 'https://open.spotify.com/track/37I2TpB0m4MFflQJ7fd3S6?si=963564ef632841f7',
-    image: '/images/cover-if-i-was-you.png'
-  },
-];
-
-// Top Tracks with correct Spotify track links
-const fanFavorites = [
-  { title: 'Good Riddance', trackId: '3WwZbPizrnJqJFx86kNPs1', spotifyUrl: 'https://open.spotify.com/track/3WwZbPizrnJqJFx86kNPs1?si=eff83d5fb4df433b' },
-  { title: 'Love That About You', trackId: '4nWHhF8R5RkTtFotcsOYnz', spotifyUrl: 'https://open.spotify.com/track/4nWHhF8R5RkTtFotcsOYnz?si=161eb1e59f5a42ec' },
-  { title: 'Slower', trackId: '3kb9vlB7NCKHNHvYyp8EaL', spotifyUrl: 'https://open.spotify.com/track/3kb9vlB7NCKHNHvYyp8EaL?si=517822ffab61446a' },
-  { title: 'Somewhere With Beer', trackId: '2qa1gBkgc1OaZAWiF9DCzz', spotifyUrl: 'https://open.spotify.com/track/2qa1gBkgc1OaZAWiF9DCzz?si=95aecfdd964c482a' },
-  { title: "Nothing's Better", trackId: '1LtiNpTzzSX8qcvlPFLmeR', spotifyUrl: 'https://open.spotify.com/track/1LtiNpTzzSX8qcvlPFLmeR?si=a4d1cb159a7a4c1e' },
-];
-
-// Correct Spotify Artist ID from web search
-const SPOTIFY_ARTIST_ID = '0FvJm0y2eHw0aPkLLU3sIG';
-const SPOTIFY_ARTIST_URL = `https://open.spotify.com/artist/${SPOTIFY_ARTIST_ID}`;
-
-const socialStats = [
-  { platform: 'Instagram', count: '86.7K', icon: Instagram, url: 'https://www.instagram.com/filmoremusic/', color: '#E4405F' },
-  { platform: 'Facebook', count: '41K', icon: Facebook, url: 'https://www.facebook.com/filmoremusic', color: '#1877F2' },
-  { platform: 'TikTok', count: '54.9K', icon: Music2, url: 'https://www.tiktok.com/@filmoremusic', color: '#000000' },
-  { platform: 'YouTube', count: '13K', icon: Youtube, url: 'https://www.youtube.com/@filmoremusic', color: '#FF0000' },
-  { platform: 'Spotify', count: '513K+', icon: Disc3, url: SPOTIFY_ARTIST_URL, color: '#1DB954', label: 'Monthly Listeners' },
-];
-
-const playlistGoals = [
-  { name: 'Country On The Rise', platform: 'Spotify' },
-  { name: 'Hot Country', platform: 'Spotify' },
-  { name: "Today's Country", platform: 'Apple Music' },
-  { name: 'Country Heat', platform: 'Amazon Music' },
-];
-
-// Contact Information
-const bookingContact = {
-  title: 'Day-to-Day Manager',
-  name: 'Matthew Forster',
-  phone: '+1 (615) 587-8067',
-  email: 'MForster@cmsnashville.com',
-};
+import {
+  latestReleases,
+  fanFavorites,
+  socialStats,
+  playlistGoals,
+  bookingContact,
+  navItems,
+  featuredVideos,
+  SPOTIFY_ARTIST_ID,
+  SPOTIFY_ARTIST_URL,
+  CAREER_STREAMS,
+  CAREER_STREAMS_FULL,
+} from '../constants/data';
+import { Youtube } from 'lucide-react';
 
 export default function FilmoreEPK() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -143,16 +81,6 @@ export default function FilmoreEPK() {
   const desktopTransition = { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] };
   const transitionConfig = isMobile ? mobileTransition : desktopTransition;
 
-  const navItems = [
-    { id: 'hero', label: 'Home' },
-    { id: 'about', label: 'About' },
-    { id: 'stats', label: 'Stats' },
-    { id: 'music', label: 'Music' },
-    { id: 'videos', label: 'Videos' },
-    { id: 'atypical', label: 'ATYPICAL' },
-    { id: 'contact', label: 'Contact' },
-  ];
-
   return (
     <div ref={containerRef} className="relative">
       {/* Navigation */}
@@ -192,9 +120,11 @@ export default function FilmoreEPK() {
           </div>
 
           {/* Mobile Menu Button */}
-          <button 
+          <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="md:hidden relative z-50 p-2"
+            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isMenuOpen}
           >
             {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -292,8 +222,8 @@ export default function FilmoreEPK() {
                 Listen Now
               </a>
               <a 
-                href="/FILMORE_Bio.pdf"
-                download="FILMORE_Bio.pdf"
+                href="/FILMORE_BIO_2025.pdf"
+                download="FILMORE_BIO_2025.pdf"
                 className="btn-outline flex items-center gap-2"
               >
                 <Download className="w-5 h-5" />
@@ -408,16 +338,16 @@ export default function FilmoreEPK() {
                 className="space-y-4 text-filmore-cream/80 leading-relaxed"
               >
                 <p>
-                  <span className="text-filmore-gold font-semibold">FILMORE</span>, a native of <span className="text-filmore-tan">Wildwood, Missouri</span>, is making waves in the country music scene. As the <span className="text-filmore-gold">first independent artist to be featured on Spotify's Hot Country cover</span>, he has rapidly amassed over <span className="text-filmore-gold font-semibold">245 million career streams</span>.
+                  <span className="text-filmore-gold font-semibold">FILMORE</span>, a native of <span className="text-filmore-tan">Wildwood, Missouri</span>, is making waves in the country music scene. As the <span className="text-filmore-gold">first independent artist to be featured on Spotify's Hot Country cover</span>, he has rapidly amassed over <span className="text-filmore-gold font-semibold">481 million career streams</span>. Recently signed to <span className="text-filmore-gold">Pitbull's Mr. 305 Records</span>, FILMORE continues to shatter barriers between Country and Pop.
                 </p>
                 <p>
-                  Known for his catchy hooks and clever lyrics, FILMORE has captured the attention of major outlets such as <span className="text-filmore-tan">The New York Times</span>, NBC's <span className="text-filmore-tan">"TODAY" show</span>, <span className="text-filmore-tan">The Bobby Bones Show</span>, and Sirius XM's <span className="text-filmore-tan">"The Highway"</span>.
+                  Known for his catchy hooks and clever lyrics, FILMORE has captured the attention of major outlets such as <span className="text-filmore-tan">The New York Times</span>, <span className="text-filmore-tan">Rolling Stone Country</span>, NBC's <span className="text-filmore-tan">"TODAY" show</span>, <span className="text-filmore-tan">The Bobby Bones Show</span>, <span className="text-filmore-tan">CMT</span>, and Sirius XM's <span className="text-filmore-tan">"The Highway"</span>.
                 </p>
                 <p>
-                  His electric live performances have seen him opening for notable acts like <span className="text-filmore-gold">Pitbull, Sam Hunt, Blake Shelton, Carrie Underwood, Dan + Shay</span>, and <span className="text-filmore-gold">Lauren Alaina</span>. He has also delivered memorable performances at renowned festivals like <span className="text-filmore-tan">Stagecoach, Watershed, CMA Fest</span>, and <span className="text-filmore-tan">Country Thunder</span>.
+                  His electric live performances have seen him opening for notable acts like <span className="text-filmore-gold">Blake Shelton, Carrie Underwood, Dan + Shay, Brett Young, Pitbull</span>, and more. He has also delivered memorable performances at renowned festivals like <span className="text-filmore-tan">Stagecoach, CMA Fest, Windy City Smokeout, Country Thunders</span>, and more.
                 </p>
                 <p>
-                  As a <span className="text-filmore-gold">CMA ambassador</span>, FILMORE is committed to giving back and helping the younger generation pursue their musical dreams. Recently, FILMORE has released a series of engaging tracks under <span className="text-filmore-gold font-semibold">Mr. 305 Records</span>, including "If I Was You," "South On Me," and "Betcha Gonna."
+                  A first-generation American with Colombian heritage, FILMORE is gearing up to release his fourth studio album <span className="text-filmore-gold font-semibold">ATYPICAL</span>—a 21-song powerhouse dropping <span className="text-filmore-tan">February 20, 2026</span> via <span className="text-filmore-gold">Mr. 305 Records</span>, with a co-project alongside Pitbull coming later in 2026.
                 </p>
               </motion.div>
 
@@ -430,7 +360,7 @@ export default function FilmoreEPK() {
                 className="mt-8 grid grid-cols-3 gap-4"
               >
                 <div className="text-center p-4 bg-filmore-dark/50 rounded-sm border border-filmore-tan/20">
-                  <div className="font-accent text-3xl text-filmore-gold">245M+</div>
+                  <div className="font-accent text-3xl text-filmore-gold">{CAREER_STREAMS}</div>
                   <div className="font-display text-xs tracking-wider text-filmore-tan uppercase mt-1">Streams</div>
                 </div>
                 <div className="text-center p-4 bg-filmore-dark/50 rounded-sm border border-filmore-tan/20">
@@ -552,6 +482,24 @@ export default function FilmoreEPK() {
             />
           </motion.div>
 
+          {/* YEEHAW Banner */}
+          <motion.a
+            href="https://open.spotify.com/track/3zvpqxPFQxtFLD1FdCBiOf"
+            target="_blank"
+            rel="noopener noreferrer"
+            initial={{ opacity: 0, y: isMobile ? 10 : 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: isMobile ? 0.25 : 0.6, delay: 0.3 }}
+            className="block mb-16 group"
+          >
+            <img
+              src="/images/YEEHAW-FxP-Banner.jpg"
+              alt="YEEHAW featuring Pitbull"
+              className="w-full rounded-sm border border-filmore-tan/20 group-hover:border-filmore-gold/50 transition-all"
+            />
+          </motion.a>
+
           {/* Album Grid */}
           <div className="grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-6">
             {latestReleases.map((album, index) => (
@@ -655,12 +603,7 @@ export default function FilmoreEPK() {
 
           {/* Video Grid */}
           <div className="grid md:grid-cols-2 gap-6">
-            {[
-              { title: 'IF I WAS YOU', videoId: 'Oh8IhZxdiT8' },
-              { title: 'ABC NYE BTS', videoId: 'UuM2RiD1sfI' },
-              { title: 'YEEHAW (Visual)', videoId: 'wYyOClehLVE' },
-              { title: 'NBC 4th OF JULY', videoId: 'WNwIhm-b-4U' },
-            ].map((video, index) => (
+            {featuredVideos.map((video, index) => (
               <motion.a
                 key={video.title}
                 href={`https://www.youtube.com/watch?v=${video.videoId}`}
@@ -767,7 +710,7 @@ export default function FilmoreEPK() {
               <h2 className="font-accent text-6xl md:text-7xl mt-4 mb-6">ATYPICAL</h2>
               
               <p className="text-filmore-cream/80 leading-relaxed mb-8">
-                Filmore is currently in the studio crafting his fourth full-length project, <span className="text-filmore-gold font-semibold">'ATYPICAL'</span>, his first album release under <span className="text-filmore-tan">Mr.305 Records</span>. The 15-track album dives into the heart of country-pop, showcasing Filmore's signature blend of catchy hooks, heartfelt storytelling, and genre-bending production.
+                FILMORE's fourth studio album <span className="text-filmore-gold font-semibold">'ATYPICAL'</span> drops <span className="text-filmore-tan">February 20, 2026</span>—his first full-length under <span className="text-filmore-tan">Mr. 305 Records</span>. The 21-song powerhouse stacks hard-hitting hooks with a bold mosaic of styles: Outlaw Country, Hard-Rock, Hip-Hop, Dancehall-Pop, and more. A co-project with Pitbull, <span className="text-filmore-gold">"TBD Volume 1"</span>, is also set to release in 2026.
               </p>
 
               {/* Playlist Spots */}
@@ -889,7 +832,7 @@ export default function FilmoreEPK() {
                 className="h-16 w-auto mb-4"
               />
               <p className="text-filmore-cream/60 text-sm leading-relaxed">
-                Rising Country Music Artist from Wildwood, Missouri. Over 245 million career streams and counting.
+                Rising Country Music Artist from Wildwood, Missouri. Over {CAREER_STREAMS_FULL} career streams and counting.
               </p>
             </div>
 
@@ -915,8 +858,8 @@ export default function FilmoreEPK() {
                   Official Website
                 </a>
                 <a
-                  href="/FILMORE_Bio.pdf"
-                  download="FILMORE_Bio.pdf"
+                  href="/FILMORE_BIO_2025.pdf"
+                  download="FILMORE_BIO_2025.pdf"
                   className="block text-filmore-cream/60 hover:text-filmore-gold transition-colors text-sm"
                 >
                   Download PDF
