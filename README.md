@@ -1,6 +1,6 @@
-# FILMORE EPK Website
+# FILMORE Bio Website
 
-A modern, responsive Electronic Press Kit (EPK) website for country music artist FILMORE, built with Next.js 14, Tailwind CSS, and Framer Motion.
+A modern, responsive artist bio website for country music artist FILMORE, built with Next.js 14, Tailwind CSS, and Framer Motion.
 
 ![FILMORE](public/images/filmore-hero.jpg)
 
@@ -40,7 +40,7 @@ A modern, responsive Electronic Press Kit (EPK) website for country music artist
 ### Option 1: Vercel CLI (Fastest)
 
 ```bash
-cd filmore-epk
+cd filmore-bio
 npm install
 npx vercel
 ```
@@ -49,10 +49,10 @@ npx vercel
 
 1. Push to GitHub:
 ```bash
-cd filmore-epk
+cd filmore-bio
 git init
 git add .
-git commit -m "Update FILMORE EPK v2"
+git commit -m "Update FILMORE Bio"
 git remote add origin <your-github-repo-url>
 git push -u origin main
 ```
@@ -74,11 +74,11 @@ Open [http://localhost:3000](http://localhost:3000)
 ## Project Structure
 
 ```
-filmore-epk/
+filmore-bio/
 ├── app/
 │   ├── globals.css      # Custom styles & Tailwind
 │   ├── layout.tsx       # Root layout with metadata
-│   └── page.tsx         # Main EPK page
+│   └── page.tsx         # Main Bio page
 ├── public/
 │   ├── favicon.ico      # Browser favicon
 │   ├── icon.png         # 32x32 icon

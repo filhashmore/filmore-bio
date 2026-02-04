@@ -29,7 +29,7 @@ import {
 } from '../constants/data';
 import { Youtube } from 'lucide-react';
 
-export default function FilmoreEPK() {
+export default function FilmoreBio() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
   const [isLoaded, setIsLoaded] = useState(false);
