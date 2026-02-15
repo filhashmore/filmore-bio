@@ -56,6 +56,29 @@ export default function RootLayout({
         <link rel="icon" href="/icon.png" type="image/png" sizes="32x32" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <meta name="theme-color" content="#2A2118" />
+        {/* AI / LLM Context */}
+        <link rel="ai-context" href="/llms.txt" type="text/markdown" title="AI context summary" />
+        <link rel="ai-context-full" href="/llms-full.txt" type="text/markdown" title="AI context comprehensive" />
+        <meta name="ai-context" content="/llms.txt" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "name": "FILMORE",
+              "url": "https://filmore-bio.vercel.app",
+              "author": {
+                "@type": "Person",
+                "name": "FiL Hash",
+                "sameAs": [
+                  "https://x.com/FiLHashDev",
+                  "https://github.com/filhashmore"
+                ]
+              }
+            })
+          }}
+        />
       </head>
       <body>
         <div className="noise-overlay" aria-hidden="true"></div>

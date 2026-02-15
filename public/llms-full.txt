@@ -1,0 +1,150 @@
+# FILMORE Bio — Complete Reference
+
+> Official artist bio website for FILMORE, a rising country music artist from Wildwood, Missouri, signed to Mr. 305 Records.
+
+---
+
+## Site Overview
+
+- **URL:** https://filmore-bio.vercel.app
+- **Author:** FiL Hash
+- **Contact:** filhashmore@protonmail.com
+- **GitHub:** https://github.com/filhashmore
+- **X/Twitter:** https://x.com/FiLHashDev
+- **Location:** Nashville, Tennessee
+- **Type:** Static artist bio / showcase site
+- **Stack:** Next.js 14 (App Router, static export), Tailwind CSS, Framer Motion, Lucide React, TypeScript
+- **Hosting:** Vercel (with security headers: CSP, HSTS, XSS protection, X-Frame-Options, Permissions-Policy)
+- **PWA:** Yes
+- **Theme:** Dark earthy palette (#2A2118 base, gold accents, cream text)
+- **Fonts:** Oswald, Bebas Neue, Libre Baskerville
+
+## Navigation
+
+This is a single-page site with anchor-linked sections:
+
+| Section | Anchor | Description |
+|---------|--------|-------------|
+| Home | #hero | Hero image, artist tagline, Listen Now + Download PDF CTAs |
+| About | #about | Full biography, career highlights, quick stats (481M+ streams, #1 Hot Country, CMA Ambassador) |
+| Stats | #stats | Social media follower counts with links to each platform |
+| Music | #music | Spotify embed, album grid (5 latest releases), YEEHAW banner, Top 5 fan favorites |
+| Videos | #videos | 4 featured YouTube videos with thumbnail previews |
+| ATYPICAL | #atypical | New album details, playlist spots, pre-save link |
+| Contact | #contact | Booking management contact info |
+
+---
+
+## Artist Biography
+
+FILMORE is a native of Wildwood, Missouri, making waves in the country music scene. He is the first independent artist to be featured on Spotify's Hot Country cover and has amassed over 481 million career streams. Recently signed to Pitbull's Mr. 305 Records, FILMORE continues to shatter barriers between Country and Pop.
+
+Known for catchy hooks and clever lyrics, FILMORE has been featured by The New York Times, Rolling Stone Country, NBC's "TODAY" show, The Bobby Bones Show, CMT, and Sirius XM's "The Highway."
+
+His live performances have seen him opening for Blake Shelton, Carrie Underwood, Dan + Shay, Brett Young, Pitbull, and more. Festival appearances include Stagecoach, CMA Fest, Windy City Smokeout, and Country Thunders.
+
+A first-generation American with Colombian heritage, FILMORE is releasing his fourth studio album ATYPICAL — a 21-song powerhouse dropping February 20, 2026, via Mr. 305 Records. A co-project with Pitbull is also set for 2026.
+
+---
+
+## Discography (Latest Releases)
+
+| Title | Spotify Link |
+|-------|-------------|
+| Love Lovin You | https://open.spotify.com/track/4BYeOgiYGilvy67AAOGJ4g |
+| Hola | https://open.spotify.com/track/0huIntjZ6mdOjk6Dts3j5P |
+| Betcha Gonna | https://open.spotify.com/track/1RJbb6BXJW53LlbcOXahv1 |
+| South On Me | https://open.spotify.com/track/4DNhJNM7vu2fYWKJllUBeu |
+| If I Was You | https://open.spotify.com/track/37I2TpB0m4MFflQJ7fd3S6 |
+
+## Fan Favorites (Top Tracks)
+
+| Title | Spotify Link |
+|-------|-------------|
+| Good Riddance | https://open.spotify.com/track/3WwZbPizrnJqJFx86kNPs1 |
+| Love That About You | https://open.spotify.com/track/4nWHhF8R5RkTtFotcsOYnz |
+| Slower | https://open.spotify.com/track/3kb9vlB7NCKHNHvYyp8EaL |
+| Somewhere With Beer | https://open.spotify.com/track/2qa1gBkgc1OaZAWiF9DCzz |
+| Nothing's Better | https://open.spotify.com/track/1LtiNpTzzSX8qcvlPFLmeR |
+
+## Featured Videos
+
+| Title | YouTube Link |
+|-------|-------------|
+| IF I WAS YOU | https://www.youtube.com/watch?v=Oh8IhZxdiT8 |
+| ABC NYE BTS | https://www.youtube.com/watch?v=UuM2RiD1sfI |
+| YEEHAW (Visual) | https://www.youtube.com/watch?v=wYyOClehLVE |
+| NBC 4th OF JULY | https://www.youtube.com/watch?v=WNwIhm-b-4U |
+
+---
+
+## Social Media Presence
+
+| Platform | Followers | URL |
+|----------|-----------|-----|
+| Instagram | 85.3K | https://www.instagram.com/filmoremusic/ |
+| Facebook | 42.5K | https://www.facebook.com/filmoremusic |
+| TikTok | 60.7K | https://www.tiktok.com/@filmoremusic |
+| YouTube | 13.8K | https://www.youtube.com/@filmoremusic |
+| Spotify | 602.6K monthly listeners | https://open.spotify.com/artist/0FvJm0y2eHw0aPkLLU3sIG |
+
+---
+
+## ATYPICAL Album
+
+- **Title:** ATYPICAL
+- **Release Date:** February 20, 2026
+- **Label:** Mr. 305 Records
+- **Tracks:** 21 songs
+- **Genres:** Outlaw Country, Hard-Rock, Hip-Hop, Dancehall-Pop
+- **Pre-save:** https://open.spotify.com/prerelease/6Iieqpd3lBD8qzueoFrTz7
+- **Notable:** First full-length under Mr. 305 Records
+- **Follow-up:** Co-project with Pitbull ("TBD Volume 1") also planned for 2026
+
+### Playlist Spots
+
+| Playlist | Platform |
+|----------|----------|
+| Country On The Rise | Spotify |
+| Hot Country | Spotify |
+| Today's Country | Apple Music |
+| Country Heat | Amazon Music |
+
+---
+
+## Architecture
+
+- **Framework:** Next.js 14 with App Router, configured for static export
+- **Styling:** Tailwind CSS with custom earthy color palette (filmore-dark, filmore-cream, filmore-gold, filmore-tan, filmore-brown)
+- **Animations:** Framer Motion with mobile-optimized settings (reduced duration, simplified transforms on mobile/tablet)
+- **Data:** All content driven by constants/data.ts — no backend or API calls
+- **Images:** Unoptimized (static export), served from /public/images/
+- **Security:** Vercel security headers (CSP, HSTS, XSS protection, X-Frame-Options DENY, Permissions-Policy)
+- **PDF:** Downloadable bio available at /FILMORE_BIO_2025.pdf
+
+---
+
+## Access & Authentication
+
+No authentication required. The site is fully public. A downloadable PDF bio is available directly from the hero section and footer.
+
+---
+
+## Contact
+
+**Booking / Management:**
+- Matthew Forster (Day-to-Day Manager)
+- Email: MForster@cmsnashville.com
+- Phone: +1 (615) 587-8067
+
+**Artist Links:**
+- Official Website: https://www.filmoremusic.com
+- Spotify: https://open.spotify.com/artist/0FvJm0y2eHw0aPkLLU3sIG
+- Mr. 305 Records: https://mr305.com
+
+**Site Developer:**
+- FiL Hash
+- Email: filhashmore@protonmail.com
+- GitHub: https://github.com/filhashmore
+- X/Twitter: https://x.com/FiLHashDev
+- Location: Nashville, TN

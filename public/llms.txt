@@ -1,0 +1,47 @@
+# FILMORE Bio
+
+> Official artist bio website for FILMORE, a rising country music artist from Wildwood, Missouri, signed to Mr. 305 Records.
+
+## Site Info
+
+- URL: https://filmore-bio.vercel.app
+- Author: FiL Hash
+- Contact: filhashmore@protonmail.com
+- GitHub: https://github.com/filhashmore
+- X/Twitter: https://x.com/FiLHashDev
+- Stack: Next.js 14, Tailwind CSS, Framer Motion, Lucide React, TypeScript
+- Type: Static site (Next.js static export)
+
+## Pages
+
+This is a single-page site with anchor-linked sections:
+
+- [Home](https://filmore-bio.vercel.app/#hero): Hero section with artist intro, listen/download CTAs
+- [About](https://filmore-bio.vercel.app/#about): Artist biography, career highlights, quick stats
+- [Stats](https://filmore-bio.vercel.app/#stats): Social media presence and follower counts
+- [Music](https://filmore-bio.vercel.app/#music): Discography, Spotify embed, album grid, fan favorites
+- [Videos](https://filmore-bio.vercel.app/#videos): Featured YouTube videos
+- [ATYPICAL](https://filmore-bio.vercel.app/#atypical): New album details, playlist spots, pre-save link
+- [Contact](https://filmore-bio.vercel.app/#contact): Booking and management contact info
+
+## About the Artist
+
+FILMORE is a country music artist from Wildwood, Missouri, known as the first independent artist to be featured on Spotify's Hot Country cover. With over 481 million career streams, he has recently signed to Pitbull's Mr. 305 Records. His fourth studio album ATYPICAL — a 21-song release — drops February 20, 2026.
+
+## Key Features
+
+- Embedded Spotify artist player
+- Animated scroll sections with Framer Motion
+- Mobile-optimized with responsive design
+- Downloadable PDF bio
+- Direct social media and streaming links
+- YEEHAW feat. Pitbull promotional banner
+
+## Access
+
+No authentication required. Site is publicly accessible.
+
+## Contact
+
+For booking inquiries: Matthew Forster, MForster@cmsnashville.com, +1 (615) 587-8067.
+Site built by FiL Hash — filhashmore@protonmail.com | https://x.com/FiLHashDev | https://github.com/filhashmore
